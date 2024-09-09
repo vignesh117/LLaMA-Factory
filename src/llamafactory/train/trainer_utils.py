@@ -494,6 +494,14 @@ def _create_blockllm_optimizer(
     training_args: "Seq2SeqTrainingArguments",
     finetuning_args: "FinetuningArguments",
 ) -> "torch.optim.Optimizer":
+    # Check if blockllm is installed
+    try:
+        from blockllm_torch import BlockLLM
+    except ImportError:
+        raise ImportError(
+            "Please install blockllm_torch from https://github.com/vignesh117/block-llm-dev to use BlockLLM optimizer."
+        )
+
     from blockllm_torch import BlockLLM
 
     # Configure the BlockLLM optimizer here
