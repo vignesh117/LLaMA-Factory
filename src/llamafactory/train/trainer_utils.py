@@ -506,11 +506,12 @@ def _create_blockllm_optimizer(
 
     # Configure the BlockLLM optimizer here
     optimizer = BlockLLM(
-        model.parameters(),
+        # model.parameters(),
+        model.named_parameters(),
         lr=training_args.learning_rate,
         sparsity_level=finetuning_args.blockllm_sparsity,
         update_freq=finetuning_args.blockllm_update_freq,
-        model=model,
+        # model=model,
         # Add any other necessary parameters
     )
     logger.info("Using BlockLLM optimizer.")
